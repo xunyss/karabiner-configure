@@ -34,7 +34,7 @@ RULE_INPUT_SOURCE: dict = {
     "manipulators": [
         {
             "type": "basic",
-            "from": {"key_code": "right_command"},
+            "from": {"modifiers": {"optional": ["caps_lock"]}, "key_code": "right_command"},
             "to": [{"key_code": "f19", "repeat": False}],
             "conditions": [{"type": "frontmost_application_unless", "bundle_identifiers": BUNDLES_WINDOWS}]
         }
@@ -83,14 +83,20 @@ RULE_WINDOWS: dict = {
         },
         {
             "type": "basic",
-            "from": {"modifiers": {"mandatory": ["left_shift", "left_option"], "optional": ["left_control"]}, "key_code": "4"},
-            "to": [{"modifiers": ["left_shift", "left_command"], "key_code": "4"}],
+            "from": {"modifiers": {"mandatory": ["left_option"], "optional": ["caps_lock"]}, "key_code": "spacebar"},
+            "to": [{"modifiers": ["left_command"], "key_code": "spacebar"}],
             "conditions": [{"type": "frontmost_application_if", "bundle_identifiers": BUNDLES_WINDOWS}]
         },
         {
             "type": "basic",
-            "from": {"modifiers": {"mandatory": ["left_control", "left_option"]}, "key_code": "q"},
+            "from": {"modifiers": {"mandatory": ["left_control", "left_option"], "optional": ["caps_lock"]}, "key_code": "q"},
             "to": [{"modifiers": ["left_control", "left_command"], "key_code": "q"}],
+            "conditions": [{"type": "frontmost_application_if", "bundle_identifiers": BUNDLES_WINDOWS}]
+        },
+        {
+            "type": "basic",
+            "from": {"modifiers": {"mandatory": ["left_shift", "left_option"], "optional": ["left_control", "caps_lock"]}, "key_code": "4"},
+            "to": [{"modifiers": ["left_shift", "left_command"], "key_code": "4"}],
             "conditions": [{"type": "frontmost_application_if", "bundle_identifiers": BUNDLES_WINDOWS}]
         }
     ]
