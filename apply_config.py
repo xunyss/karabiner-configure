@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+
 #---------------------------------------------------------------------------------------------------
 # conditions
 #---------------------------------------------------------------------------------------------------
@@ -21,7 +22,10 @@ BUNDLES_EXCEPTS = BUNDLES_WINDOWS + [
 ]
 
 # mac-book keyboard
-DEVICE_MACBOOK_KEYBOARD = [{"vendor_id": 1452, "product_id": 835}]
+DEVICE_MACBOOK_KEYBOARD = [{ "is_built_in_keyboard": True }]
+
+# keychron k8 keyboard
+DEVICE_KEYCHRON_K8 = [{ "vendor_id": 1452, "product_id": 591 }]
 
 
 #---------------------------------------------------------------------------------------------------
@@ -123,7 +127,7 @@ RULE_FILE: dict = {
 
 # ^A, ^C, ^V, ^X, ^Z, ^Y
 RULE_EDIT: dict = {
-    "description": "Ctrl+[A, C, V, X, Z, Y] => ⌘A (Select All), ⌘C (Copy), ⌘V (Paste), ⌘X (cut), ⌘Z (Undo), ⇧⌘Z (redo)",
+    "description": "Ctrl+[A, C, V, X, Z, Y] => ⌘A (Select All), ⌘C (Copy), ⌘V (Paste), ⌘X (Cut), ⌘Z (Undo), ⇧⌘Z (Redo)",
     "manipulators": [
         {
             "type": "basic",
@@ -228,6 +232,19 @@ RULE_ARROW: dict = {
     ]
 }
 
+# keyboard: keychron K8
+RULE_KEYCHRON_K8: dict = {
+    "description": "KeyChron K8 Keyboard :: 'Mic' key => ⌘space (Spotlight)",
+    "manipulators": [
+        {
+            "type": "basic",
+            "from": {"modifiers": {"mandatory": ["fn"], "optional": ["caps_lock"] }, "key_code": "spacebar"},
+            "to": [{"modifiers": ["left_command"], "key_code": "spacebar"}],
+            "conditions": [{"type": "device_if", "identifiers": DEVICE_KEYCHRON_K8}]
+        }
+    ]
+}
+
 
 #---------------------------------------------------------------------------------------------------
 # apply
@@ -239,7 +256,7 @@ keymaps: dict = {
         # apply "using Windows-like key mappings"
         #RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_FILE, RULE_EDIT, RULE_HOME_END, RULE_ARROW
         # apply "using Mac key mappings"
-        RULE_INPUT_SOURCE, RULE_WINDOWS
+        RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_KEYCHRON_K8
     ]
 }
 
