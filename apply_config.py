@@ -205,15 +205,13 @@ RULE_ARROW: dict = {
     "manipulators": [
         {
             "type": "basic",
-            "from": {"modifiers": {"mandatory": ["control"], "optional": ["caps_lock", "shift"]},
-                     "key_code": "left_arrow"},
+            "from": {"modifiers": {"mandatory": ["control"], "optional": ["caps_lock", "shift"]}, "key_code": "left_arrow"},
             "to": [{"modifiers": ["left_option"], "key_code": "left_arrow"}],
             "conditions": [{"type": "frontmost_application_unless", "bundle_identifiers": BUNDLES_EXCEPTS}]
         },
         {
             "type": "basic",
-            "from": {"modifiers": {"mandatory": ["control"], "optional": ["caps_lock", "shift"]},
-                     "key_code": "right_arrow"},
+            "from": {"modifiers": {"mandatory": ["control"], "optional": ["caps_lock", "shift"]}, "key_code": "right_arrow"},
             "to": [{"modifiers": ["left_option"], "key_code": "right_arrow"}],
             "conditions": [{"type": "frontmost_application_unless", "bundle_identifiers": BUNDLES_EXCEPTS}]
         },
