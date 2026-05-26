@@ -254,7 +254,8 @@ keymaps: dict = {
         # apply "using Windows-like key mappings"
         #RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_FILE, RULE_EDIT, RULE_HOME_END, RULE_ARROW
         # apply "using Mac key mappings"
-        RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_KEYCHRON_K8
+        #RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_KEYCHRON_K8
+        RULE_INPUT_SOURCE, RULE_WINDOWS
     ]
 }
 
