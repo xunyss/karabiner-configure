@@ -6,7 +6,7 @@ from pathlib import Path
 # conditions
 #---------------------------------------------------------------------------------------------------
 
-# Windows supported applications
+# Windows-supported applications
 BUNDLES_WINDOWS = [
     "^com\\.parallels\\.desktop\\.console$",
     "^com\\.vmware\\.horizon$",
@@ -17,8 +17,8 @@ BUNDLES_WINDOWS = [
 BUNDLES_EXCEPTS = BUNDLES_WINDOWS + [
     "^com\\.googlecode\\.iterm2$",
     "^com\\.mitchellh\\.ghostty$",
+    "^dev\\.warp\\.Warp-Stable$",
     "^com\\.jetbrains\\..*$",
-    "^com\\.microsoft\\.VSCode$"
 ]
 
 
@@ -26,7 +26,7 @@ BUNDLES_EXCEPTS = BUNDLES_WINDOWS + [
 # devices
 #---------------------------------------------------------------------------------------------------
 
-# Mac-Book internal keyboard
+# MacBook internal keyboard
 DEVICE_MACBOOK_KEYBOARD = [{ "is_built_in_keyboard": True }]
 
 # KeyChron k8
