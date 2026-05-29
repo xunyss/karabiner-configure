@@ -6,7 +6,7 @@ from pathlib import Path
 # conditions
 #---------------------------------------------------------------------------------------------------
 
-# windows supported applications
+# Windows supported applications
 BUNDLES_WINDOWS = [
     "^com\\.parallels\\.desktop\\.console$",
     "^com\\.vmware\\.horizon$",
@@ -21,11 +21,22 @@ BUNDLES_EXCEPTS = BUNDLES_WINDOWS + [
     "^com\\.microsoft\\.VSCode$"
 ]
 
-# mac-book keyboard
+
+#---------------------------------------------------------------------------------------------------
+# devices
+#---------------------------------------------------------------------------------------------------
+
+# Mac-Book internal keyboard
 DEVICE_MACBOOK_KEYBOARD = [{ "is_built_in_keyboard": True }]
 
-# keychron k8 keyboard
+# KeyChron k8
 DEVICE_KEYCHRON_K8 = [{ "vendor_id": 1452, "product_id": 591 }]
+
+# AURORA 80
+DEVICE_AURORA_80 = [{ "vendor_id": 14000, "product_id": 12292 }]
+
+# RS 8
+DEVICE_RS_8 = [{ "vendor_id": 14000, "product_id": 12293 }]
 
 
 #---------------------------------------------------------------------------------------------------
@@ -34,7 +45,7 @@ DEVICE_KEYCHRON_K8 = [{ "vendor_id": 1452, "product_id": 591 }]
 
 # switch input source
 RULE_INPUT_SOURCE: dict = {
-    "description": "(Right)Alt => F19(한/영) (입력소스 설정에서 단축키 F19 등록 필요)",
+    "description": "Input Source :: Right ⌘ => F19 (Set F19 as the Input Source shortcut)",
     "manipulators": [
         {
             "type": "basic",
@@ -47,7 +58,7 @@ RULE_INPUT_SOURCE: dict = {
 
 # Windows keyboard
 RULE_WINDOWS: dict = {
-    "description": "Windows Keyboard on Mac :: Swap [⌘ and ⌥] & Allow [Screen Shot, Lock Screen]",
+    "description": "Windows on Mac :: Swap [⌘ and ⌥] & Allow [Screen Shot, Lock Screen]",
     "manipulators": [
         {
             "type": "basic",
@@ -230,15 +241,39 @@ RULE_ARROW: dict = {
     ]
 }
 
-# keyboard: keychron K8
+
+#---------------------------------------------------------------------------------------------------
+# keyboards
+#---------------------------------------------------------------------------------------------------
+
+# KeyChron k8
 RULE_KEYCHRON_K8: dict = {
-    "description": "KeyChron K8 Keyboard :: 'Mic' key => ⌘space (Spotlight)",
+    "description": "Keyboard [KeyChron-K8] :: 'Mic' key => ⌘space (Spotlight)",
     "manipulators": [
         {
             "type": "basic",
             "from": {"modifiers": {"mandatory": ["fn"], "optional": ["caps_lock"] }, "key_code": "spacebar"},
             "to": [{"modifiers": ["left_command"], "key_code": "spacebar"}],
             "conditions": [{"type": "device_if", "identifiers": DEVICE_KEYCHRON_K8}]
+        }
+    ]
+}
+
+# RS 8
+RULE_RS_8: dict = {
+    "description": "Keyboard [RS-8] :: MissionControl (F13), LaunchPad (F14)",
+    "manipulators": [
+        {
+            "type": "basic",
+            "from": {"modifiers": {"optional": ["any"]}, "key_code": "f13"},
+            "to": [{"apple_vendor_keyboard_key_code": "mission_control"}],
+            "conditions": [{"type": "device_if", "identifiers": DEVICE_RS_8}]
+        },
+        {
+            "type": "basic",
+            "from": {"modifiers": {"optional": ["any"]}, "key_code": "f14"},
+            "to": [{"apple_vendor_keyboard_key_code": "launchpad"}],
+            "conditions": [{"type": "device_if", "identifiers": DEVICE_RS_8}]
         }
     ]
 }
@@ -255,7 +290,7 @@ keymaps: dict = {
         #RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_FILE, RULE_EDIT, RULE_HOME_END, RULE_ARROW
         # apply "using Mac key mappings"
         #RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_KEYCHRON_K8
-        RULE_INPUT_SOURCE, RULE_WINDOWS
+        RULE_INPUT_SOURCE, RULE_WINDOWS, RULE_RS_8
     ]
 }
 
