@@ -1,2 +1,2 @@
-# karabiner-configure
-karabiner-configure
+# karabiner-config
+karabiner-config

@@ -294,7 +294,8 @@ keymaps: dict = {
     ]
 }
 
-conf_path = Path.home() / ".config/karabiner/assets/complex_modifications/xunyss_keys.json"
+conf_file = "xunyss_keys.json"
+conf_path = Path.home() / ".config/karabiner/assets/complex_modifications" / conf_file
 json.dump(keymaps, open(conf_path, "w"), ensure_ascii=False, indent=4)
-print(f"karabiner configs updated: '{conf_path}'")
+print(f"Karabiner complex_modifications updated: '{conf_path}'")
 
